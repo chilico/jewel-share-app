@@ -4,8 +4,8 @@
 <div class="container m-4">
   <div class="row justify-content-center">
     <% @jewels.each do |jewel| %>
-      <div class="jewel_card col-12 col-md-6 col-lg-3 m-3 px-4 rounded" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path jewel.photos.first.key %>');">
-        <h3><%= jewel.name %></h3>
+      <div class="jewel_card col-8 col-lg-4 m-3 px-4 rounded" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path jewel.photos.first.key %>');">
+        <h3><%= jewel.title %></h3>
         <%= link_to "View Listing", jewel, class: "btn btn-outline-light rounded-pill m-4" %>
       </div>
     <% end %>
