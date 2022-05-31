@@ -45,6 +45,6 @@ class JewelsController < ApplicationController
   end
 
   def jewel_params
-    params.require(:jewel).permit(:title, :price, :description, :image_attachment)
+    params.require(:jewel).permit(:title, :price, :description, photos: [])
   end
 end
