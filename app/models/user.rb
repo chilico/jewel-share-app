@@ -3,11 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
   has_many :bookings
   has_many :jewels
+
   has_one_attached :profile_pic
 
-  # validates :first_name, presence: true
-  # validates :last_name, presence: true
-  # validates :address, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :address, presence: true
 end
