@@ -1,2 +1,5 @@
-<h1>Jewels#show</h1>
-<p>Find me in app/views/jewels/show.html.erb</p>
+<div class="green-banner">
+  <% @jewel.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 350, width: 250, crop: :fill, margin: 0 auto, %>
+  <% end %>
+</div>
