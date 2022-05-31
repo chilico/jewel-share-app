@@ -64,7 +64,7 @@ users.each do |user|
     jewel.title = Faker::Hipster.word.capitalize
     jewel.price = Faker::Number.decimal(l_digits: 3, r_digits: 2)
     jewel.description = Faker::Lorem.paragraph(sentence_count: 4)
-    photo = URI.open(image_urls.sample)
+    photo = URI.open(image_urls.sample(3))
     filename = "#{Faker::Hipster.word}.jpg"
     jewel.photos.attach(io: photo, filename: filename, content_type: "image/png")
     jewel.save
