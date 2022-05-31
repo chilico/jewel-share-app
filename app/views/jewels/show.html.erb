@@ -1,5 +1,56 @@
-<div class="green-banner">
-  <% @jewel.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, height: 350, width: 250, crop: :fill, margin: 0 auto, %>
-  <% end %>
+<div class="container">
+  <div class="green-banner">
+    <div class="d-flex align-items-center justify-content-center h-100">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% @jewel.photos.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= "active" if index == 0 %>">
+                <%= cl_image_tag photo.key, height: 300, width: 200, crop: :fill, alt: "Jewellery Photo", class: "d-block" %>
+              </div>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-row justify-content-between">
+    <div>
+      <h1><%= @jewel.title %></h1>
+      <p><%= @jewel.description %></p>
+      <p><%= "£#{@jewel.price}" %></p>
+      <p><%= link_to "Edit Jewellery Listing", edit_jewel_path(@jewel.id) %></p>
+      <p>
+      <%= link_to "Delete Jewellery Listing",
+          jewel_path(@jewel.id),
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      </p>
+    </div>
+    <div>
+      <%= simple_form_for [@jewel, @booking] do |f| %>
+        <%= f.input :start_date %>
+        <%= f.input :end_date %>
+        <%= f.submit "Book Jewellery", class: "btn btn-light-green" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="d-flex flex-row justify-content-between py-5 align-items-center">
+    <div>
+      <p><%= link_to "< Continue Shopping", root_path %></p>
+    </div>
+    <div>
+      <% if current_user.profile_pic.attached? %>
+          <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= cl_image_tag current_user.profile_pic.key, gravity: "faces", crop: "fill", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <% else %></p>
+          <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= image_tag "/assets/user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <% end %></p>
+    </div>
+  </div>
 </div>

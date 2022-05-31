@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
     @jewel = Jewel.find(params[:jewel_id])
     @booking = Booking.new(booking_params)
     @booking.jewel = @jewel
+    @booking.user_id = current_user
     if @booking.save
       redirect_to jewel_path(@jewel)
     else
@@ -13,6 +14,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_data, :user_id)
+    params.require(:booking).permit(:start_date, :end_data)
   end
 end
