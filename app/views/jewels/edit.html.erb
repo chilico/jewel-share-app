@@ -1,2 +1,8 @@
-<h1>Jewels#edit</h1>
-<p>Find me in app/views/jewels/edit.html.erb</p>
+<div class="container m-4">
+  <h1>Update your jewellery</h1>
+    <%= render 'form', jewel: @jewel %>
+  <div>
+    <%= link_to 'Show this jewellery', jewel_path(@jewel) %> |
+    <%= link_to 'Back to jewellery list', root_path %>
+  </div>
+</div>
