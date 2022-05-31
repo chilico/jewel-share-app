@@ -1,0 +1,12 @@
+<%= simple_form_for(jewel) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :price, as: :numeric %>
+    <%= f.input :description %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+
+<% end %>
