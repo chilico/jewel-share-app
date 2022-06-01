@@ -8,7 +8,7 @@
           <div class="carousel-inner pb-5 pt-3">
             <% @jewel.photos.each_with_index do |photo, index| %>
               <div class="carousel-item <%= "active" if index == 0 %>">
-                <%= cl_image_tag photo.key, height: 300, object_fit: :contain, alt: "Jewellery Photo", class: "d-block" %>
+                <%= cl_image_tag photo.key, height: 300, over_flow: :hidden, object_fit: :cover, alt: "Jewellery Photo", class: "d-block" %>
               </div>
             <% end %>
           </div>
@@ -25,7 +25,7 @@
   </div>
 
   <div class="d-flex flex-row justify-content-between">
-    <div class="pe-3">
+    <div class="pe-2">
       <p><%= @jewel.description %></p>
       <p><%= "£#{@jewel.price}" %></p>
       <p><%= link_to "Edit Jewellery Listing", edit_jewel_path(@jewel.id), class: "styling-for-links" %></p>
@@ -35,14 +35,19 @@
           data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "styling-for-links" %>
       </p>
     </div>
-    <div>
-      <%= simple_form_for [@jewel, @booking] do |f| %>
-        <%= f.input :start_date %>
-        <%= f.input :end_date %>
-        <div class="d-flex justify-content-center mt-4.5 py-2">
-          <%= f.submit "Book Jewellery", class: "btn btn-dark-green" %>
-        </div>
-      <% end %>
+    <div class="ms-3">
+      <%# <% if @booking.jewel %>
+        <%# <h2>Booking Confirmation:</h2>
+        <p>Your jewellery has been booked!</p> %>
+      <%# <% else %>
+        <%= simple_form_for [@jewel, @booking] do |f| %>
+          <%= f.input :start_date %>
+          <%= f.input :end_date %>
+          <div class="d-flex justify-content-center mt-4.5 py-2">
+            <%= f.submit "Book Jewellery", class: "btn btn-dark-green" %>
+          </div>
+        <% end %>
+      <%# <% end %>
     </div>
   </div>
   <div class="d-flex flex-row justify-content-between py-5 align-items-center">
@@ -51,7 +56,7 @@
     </div>
     <div>
       <% if current_user.profile_pic.attached? %>
-          <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= cl_image_tag current_user.profile_pic.key, gravity: "faces", crop: "fill", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= cl_image_tag @jewel.user.profile_pic.key, gravity: "faces", crop: "fill", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <% else %></p>
           <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= image_tag "/assets/user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <% end %></p>

@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
     @booking.jewel = @jewel
     @booking.user_id = current_user
     if @booking.save
-      redirect_to jewel_path(@jewel)
+      redirect_to my_bookings_path
     else
       render 'jewels/show', status: :unprocessable_entity
     end
