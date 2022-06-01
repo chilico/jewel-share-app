@@ -55,10 +55,10 @@
       <p><%= link_to "< Continue Shopping", root_path, class: "styling-for-links" %></p>
     </div>
     <div>
-      <% if current_user.profile_pic.attached? %>
-          <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= cl_image_tag @jewel.user.profile_pic.key, gravity: "faces", crop: "fill", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <% if @jewel.user.profile_pic.attached? %>
+          <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= cl_image_tag @jewel.user.profile_pic.key, gravity: "faces", crop: "fill", class: "avatar" %>
       <% else %></p>
-          <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= image_tag "/assets/user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= image_tag "user.png", class: "avatar" %>
       <% end %></p>
     </div>
   </div>
