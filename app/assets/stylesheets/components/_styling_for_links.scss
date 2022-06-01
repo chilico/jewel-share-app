@@ -1,0 +1,7 @@
+.styling-for-links {
+  color: $lighter_grey;
+
+  &:hover{
+    color: $dark_grey
+  }
+}
