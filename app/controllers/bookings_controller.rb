@@ -2,10 +2,10 @@ class BookingsController < ApplicationController
   def create
     @jewel = Jewel.find(params[:jewel_id])
     @booking = Booking.new(booking_params)
-    @booking.jewel = @jewel
-    @booking.user_id = current_user
+    @booking.jewel_id = @jewel.id
+    @booking.user_id = current_user.id
     if @booking.save
-      redirect_to jewel_path(@jewel)
+      redirect_to my_bookings_path, notice: 'Booking was successfully created.'
     else
       render 'jewels/show', status: :unprocessable_entity
     end
@@ -18,6 +18,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_data)
+    params.require(:booking).permit(:start_date, :end_date)
   end
 end

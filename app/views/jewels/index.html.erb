@@ -1,8 +1,14 @@
-<div class="container">
-  <h3>All results</h3>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url('<%= asset_url('banner1.jpg') %>');">
+  <div class="container">
+    <h1>JewelShare</h1>
+    <h2>Shine like never before</h2>
+  </div>
+</div>
+<div class="container text-center">
+  <h3 class="mt-4">All results</h3>
   <div class="row justify-content-center">
     <% @jewels.each do |jewel| %>
-      <div class="card-product col-8 col-md-4 col-lg-3 m-3 px-4 rounded">
+      <div class="card-product col-8 col-md-4 col-lg-3 m-3 px-4 rounded" style="background-image: url('<%= asset_url('quater-circle.png') %>');">
           <%= cl_image_tag jewel.photos.first.key %>
         <div class="card-product-infos">
           <h2><%= jewel.title %></h2>
