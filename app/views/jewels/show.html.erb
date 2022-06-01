@@ -1,31 +1,31 @@
 <div class="container-show">
-  <div class="green-banner">
-    <h1><%= @jewel.title %></h1>
-  </div>
-  <div class="">
-    <div class="d-flex align-items-center justify-content-center h-100">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner pb-5 pt-3">
-            <% @jewel.photos.each_with_index do |photo, index| %>
-              <div class="carousel-item <%= "active" if index == 0 %>">
-                <%= cl_image_tag photo.key, height: 300, over_flow: :hidden, object_fit: :cover, alt: "Jewellery Photo", class: "d-block" %>
-              </div>
-            <% end %>
+  <div class="upper-circle" style="background-image: url('<%= asset_url('upper-circle.png') %>');">
+    <div class="">
+      <div class="d-flex align-items-center justify-content-center h-100">
+          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner pb-5 pt-3">
+              <% @jewel.photos.each_with_index do |photo, index| %>
+                <div class="carousel-item <%= "active" if index == 0 %>">
+                  <%= cl_image_tag photo.key, height: 300, over_flow: :hidden, object_fit: :cover, alt: "Jewellery Photo", class: "d-block" %>
+                </div>
+              <% end %>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
+      </div>
     </div>
   </div>
 
   <div class="d-flex flex-row justify-content-between">
     <div class="pe-2">
+      <h1><%= @jewel.title %></h1>
       <p><%= @jewel.description %></p>
       <p><%= "£#{@jewel.price}" %></p>
       <p><%= link_to "Edit Jewellery Listing", edit_jewel_path(@jewel.id), class: "styling-for-links" %></p>
