@@ -1,0 +1,8 @@
+.btn-dark-green {
+  background-color: $dark-green;
+  color: whitesmoke;
+  border-radius: 20px;
+  &:hover {
+    color: $dark_grey;
+  }
+}

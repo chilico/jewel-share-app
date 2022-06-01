@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-show">
   <div class="green-banner">
     <div class="d-flex align-items-center justify-content-center h-100">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -26,24 +26,26 @@
       <h1><%= @jewel.title %></h1>
       <p><%= @jewel.description %></p>
       <p><%= "£#{@jewel.price}" %></p>
-      <p><%= link_to "Edit Jewellery Listing", edit_jewel_path(@jewel.id) %></p>
+      <p><%= link_to "Edit Jewellery Listing", edit_jewel_path(@jewel.id), class: "styling-for-links" %></p>
       <p>
       <%= link_to "Delete Jewellery Listing",
           jewel_path(@jewel.id),
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "styling-for-links" %>
       </p>
     </div>
     <div>
       <%= simple_form_for [@jewel, @booking] do |f| %>
         <%= f.input :start_date %>
         <%= f.input :end_date %>
-        <%= f.submit "Book Jewellery", class: "btn btn-light-green" %>
+        <div class="d-flex justify-content-center mt-4.5 py-2">
+          <%= f.submit "Book Jewellery", class: "btn btn-dark-green" %>
+        </div>
       <% end %>
     </div>
   </div>
   <div class="d-flex flex-row justify-content-between py-5 align-items-center">
     <div>
-      <p><%= link_to "< Continue Shopping", root_path %></p>
+      <p><%= link_to "< Continue Shopping", root_path, class: "styling-for-links" %></p>
     </div>
     <div>
       <% if current_user.profile_pic.attached? %>
