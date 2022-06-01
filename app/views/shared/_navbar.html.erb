@@ -1,10 +1,10 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <div class="d-flex">
-      <%= link_to "root_path", class: "navbar-brand" do %>
+    <div class="d-flex align-items-center">
+      <%= link_to root_path, class: "navbar-brand" do %>
         <%= image_tag "crystals.png" %>
       <% end %>
-      <h2>Jewel Share</h2>
+      <h2>JewelShare</h2>
     </div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,10 +15,10 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Jewellery", "#", class: "nav-link" %>
+            <%= link_to "Add Jewellery", new_jewel_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Bookings", "#", class: "nav-link" %>
+            <%= link_to "My Bookings", "#", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
           <% if current_user.profile_pic.attached? %>
