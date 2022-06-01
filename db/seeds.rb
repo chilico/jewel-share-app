@@ -73,4 +73,14 @@ users.each do |user|
   end
 end
 
+users.each do |user|
+  3.times do
+    booking = Booking.new(start_date: (Date.today + (0..25).to_a.sample),
+                          end_date: (Date.today + (25..45).to_a.sample))
+    booking.user_id = user.id
+    booking.jewel_id = Jewel.where.not(user: user).sample.id
+    booking.save
+  end
+end
+
 puts "Successfully seeded database!"
