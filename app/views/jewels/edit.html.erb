@@ -1,8 +1,10 @@
-<div class="container w-50">
-  <h1>Update your jewellery</h1>
+<div class="container d-flex flex-column align-items-center">
+  <h1 class="my-5">Update your jewellery</h1>
     <%= render 'form', jewel: @jewel %>
+  <div class="p-4">
+    <%= link_to 'Show this jewellery', jewel_path(@jewel) %>
+  </div>
   <div>
-    <%= link_to 'Show this jewellery', jewel_path(@jewel) %> |
     <%= link_to 'Back to jewellery list', root_path %>
   </div>
 </div>
