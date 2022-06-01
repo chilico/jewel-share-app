@@ -56,7 +56,6 @@ image_urls = [
   'https://res.cloudinary.com/dtcfiatru/image/upload/v1654012134/development/alireza-zarafshani-7CnWk58BsFk-unsplash_ujn07b.jpg'
 ]
 
-users = User.all
 users.each do |user|
   3.times do
     jewel = Jewel.new
@@ -69,17 +68,14 @@ users.each do |user|
       filename = "#{Faker::Hipster.word}.jpg"
       jewel.photos.attach(io: photo, filename: filename, content_type: "image/png")
     end
-    jewel.save
-  end
-end
-
-users.each do |user|
-  3.times do
-    booking = Booking.new(start_date: (Date.today + (0..25).to_a.sample),
-                          end_date: (Date.today + (25..45).to_a.sample))
+    booking = Booking.new(
+      start_date: (Date.today + (0..25).to_a.sample),
+      end_date: (Date.today + (25..45).to_a.sample)
+    )
     booking.user_id = user.id
     booking.jewel_id = Jewel.where.not(user: user).sample.id
     booking.save
+    jewel.save
   end
 end
 
