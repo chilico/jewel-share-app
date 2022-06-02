@@ -9,6 +9,10 @@ class JewelsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @markers = {
+      lat: current_user.latitude,
+      lng: current_user.longitude
+    }
   end
 
   def new
