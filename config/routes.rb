@@ -12,8 +12,8 @@ Rails.application.routes.draw do
     resources :bookings, only: %i[create]
   end
 
-  resources :bookings, only: %i[index]
+  # resources :bookings, only: %i[index]
   resources :users, only: %i[show]
-  # get 'my_bookings', to: 'bookings#my_bookings'
+  get 'my_bookings', to: 'bookings#my_bookings'
   # get 'profile/:id', to: 'users#profile'
 end

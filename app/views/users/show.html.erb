@@ -1,14 +1,43 @@
-<div class="container-show">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="row">
-        <div class="col-12 col-lg-6">
+<div class="upper-circle" style="background-image: url('<%= asset_url('upper-circle.png') %>');">
+  <div class="container-show">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="pt-4">
+              <% if @user.profile_pic.attached? %>
+                <%= cl_image_tag @user.profile_pic.key, gravity: "faces", crop: "fill", class: "avatar-bordered mx-auto" %>
+              <% else %>
+                <%= image_tag "user.png", class: "avatar-bordered mx-auto" %>
+              <% end %>
+              <h2 class="pt-4 mx-auto"><%= @user.first_name %> <%= @user.last_name %></h2>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-12 col-lg-3">
-        </div>
-        <div class="col-12 col-lg-3">
+        <div class="row pt-4">
+          <div class="col-12 col-lg-3">
+            <% if @user == current_user %>
+              <ul class="nav justify-content-center">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#" style="color:#7e868d;">Listings</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">|</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" style="color:#7e868d;">Bookings</a>
+                </li>
+              </ul>
+            <% else %>
+              <ul class="nav justify-content-center">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#" style="color:#7e868d;">Listings</a>
+                </li>
+            <% end %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%= image_tag("map.png", height: "491", width: "350", border_radius: "20px")  %>
+          </div>
         </div>
       </div>
     </div>

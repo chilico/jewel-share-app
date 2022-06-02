@@ -2,6 +2,10 @@
   color: $lighter_grey;
 
   &:hover{
-    color: $dark_grey
+    color: $dark_grey;
+  }
+
+  &:active{
+    color: $dark_grey;
   }
 }
