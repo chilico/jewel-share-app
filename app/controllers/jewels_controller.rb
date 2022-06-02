@@ -4,7 +4,18 @@ class JewelsController < ApplicationController
 
   def index
     # raise
-    @jewels = Jewel.all
+    if params[:query].present?
+      sql_query = <<~SQL
+        jewels.title @@ :query
+        OR jewels.description @@ :query
+        OR users.first_name @@ :query
+        OR users.last_name @@ :query
+        OR users.address @@ :query
+      SQL
+      @jewels = Jewel.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+    else
+      @jewels = Jewel.all
+    end
   end
 
   def show
