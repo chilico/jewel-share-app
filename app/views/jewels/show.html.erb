@@ -1,12 +1,19 @@
-<div class="container-show">
-  <div class="upper-circle" style="background-image: url('<%= asset_url('upper-circle.png') %>');">
-    <div class="">
+<div class="container upper-circle" style="background-image: url('<%= asset_url('upper-circle.png') %>');">
+  <div class="row">
+    <div class="col-12">
+      <div>
+        <p><%= link_to "< Continue Shopping", root_path, class: "styling-for-links" %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-sm-6">
       <div class="d-flex align-items-center justify-content-center h-100">
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner pb-5 pt-3">
               <% @jewel.photos.each_with_index do |photo, index| %>
                 <div class="carousel-item <%= "active" if index == 0 %>">
-                  <%= cl_image_tag photo.key, height: 300, over_flow: :hidden, object_fit: :cover, alt: "Jewellery Photo", class: "d-block" %>
+                  <%= cl_image_tag photo.key, height: 300, width: 50, over_flow: :hidden, object_fit: :cover, alt: "Jewellery Photo", class: "d-block" %>
                 </div>
               <% end %>
             </div>
@@ -21,21 +28,8 @@
           </div>
       </div>
     </div>
-  </div>
-
-  <div class="d-flex flex-row justify-content-between">
-    <div class="pe-2">
-      <h1><%= @jewel.title %></h1>
-      <p><%= @jewel.description %></p>
-      <p><%= "£#{@jewel.price}" %></p>
-      <p><%= link_to "Edit Jewellery Listing", edit_jewel_path(@jewel.id), class: "styling-for-links" %></p>
-      <p>
-      <%= link_to "Delete Jewellery Listing",
-          jewel_path(@jewel.id),
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "styling-for-links" %>
-      </p>
-    </div>
-    <div class="ms-3">
+    <div class="col-12 col-sm-6">
+      <div class="ms-3">
         <%= simple_form_for [@jewel, @booking] do |f| %>
           <%= f.input :start_date, as: :date, html5: true%>
           <%= f.input :end_date, as: :date, html5: true %>
@@ -43,18 +37,49 @@
             <%= f.submit "Book Jewellery", class: "btn btn-dark-green" %>
           </div>
         <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <div>
+        <h1><%= @jewel.title %></h1>
+        <p><%= @jewel.description %></p>
+        <p><%= "£#{@jewel.price}" %></p>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6">
+      <div>
+        <div>
+          <% if @jewel.user.profile_pic.attached? %>
+              <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= cl_image_tag @jewel.user.profile_pic.key, gravity: "faces", crop: "fill", class: "avatar" %>
+          <% else %></p>
+              <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= image_tag "user.png", class: "avatar" %>
+          <% end %></p>
+        </div>
+        <p><%= link_to "Edit Jewellery Listing", edit_jewel_path(@jewel.id), class: "styling-for-links" %></p>
+        <p>
+          <%= link_to "Delete Jewellery Listing",
+            jewel_path(@jewel.id),
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "styling-for-links" %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12"></div>
+  </div>
+
+</div>
+
+
+  <%# <div class="d-flex flex-row justify-content-between">
+    <div class="pe-2">
+
+
     </div>
   </div>
   <div class="d-flex flex-row justify-content-between py-5 align-items-center">
-    <div>
-      <p><%= link_to "< Continue Shopping", root_path, class: "styling-for-links" %></p>
-    </div>
-    <div>
-      <% if @jewel.user.profile_pic.attached? %>
-          <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= cl_image_tag @jewel.user.profile_pic.key, gravity: "faces", crop: "fill", class: "avatar" %>
-      <% else %></p>
-          <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= image_tag "user.png", class: "avatar" %>
-      <% end %></p>
-    </div>
-  </div>
-</div>
+
+
+  </div> %>
