@@ -3,23 +3,29 @@
     <h1>JewelShare</h1>
     <h2>Shine like never before</h2>
   </div>
-</div>
-<div class="container">
-  <div class="row justify-content-center">
-    <%= form_tag root_path, method: :get, class: "m-4 col-6" do %>
-      <div class="input-group custom-search">
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control rounded-pill",
-        placeholder: "Search jewellery"
-      %>
-      <%= submit_tag "Search", class: "rounded-pill custom-btn" %>
-      <i class="fa fa-search pt-5"></i>
-      </div>
-    <% end %>
+  <div class="container">
+    <div class="row justify-content-center">
+      <%= form_tag root_path, method: :get, class: "m-4 col-6" do %>
+        <div class="input-group custom-search">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control rounded-pill custom-input",
+          placeholder: "Search jewellery"
+        %>
+        <%= submit_tag "Search", class: "rounded-pill custom-btn" %>
+        <i class="fa fa-search pt-5 text-light"></i>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="row justify-content-center">
+</div>
+<div class="container text-center">
+  <% if params[:query].present? %>
+    <h2 class="my-4">Listings matching <%= "'#{params[:query]}'" %></h2>
+  <% else %>
+    <h2 class="my-4">All Listings</h2>
+  <% end %>
+  <div class="row justify-content-center mb-4">
     <% @jewels.each do |jewel| %>
       <div class="card-product col-8 col-md-4 col-lg-3 m-3 px-4 rounded" style="background-image: url('<%= asset_url('quater-circle.png') %>');">
           <%= cl_image_tag jewel.photos.first.key %>
