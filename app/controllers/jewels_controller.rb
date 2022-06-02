@@ -3,15 +3,15 @@ class JewelsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    # raise
     @jewels = Jewel.all
   end
 
   def show
     @booking = Booking.new
+    @user = @jewel.user
     @markers = {
-      lat: current_user.latitude,
-      lng: current_user.longitude
+      lat: @user.latitude,
+      lng: @user.longitude
     }
   end
 
