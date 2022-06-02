@@ -32,6 +32,7 @@ gem "devise"
 gem "cloudinary"
 gem "faker"
 gem "open-uri"
+gem "pg_search"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
