@@ -2,3 +2,8 @@ body {
   font-family: $body-font;
   color: $dark_grey;
 }
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
