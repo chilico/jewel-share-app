@@ -1,11 +1,18 @@
+.spacer-foot {
+  height: 80px;
+}
+
 .footer {
   background: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100px;
+  height: 80px;
+  width: 100%;
   padding: 0px 50px;
   color: rgba(0,0,0,0.3);
+  position: absolute;
+  bottom: 0;
 }
 .footer-links {
   display: flex;
