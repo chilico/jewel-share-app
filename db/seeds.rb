@@ -90,7 +90,7 @@ users.each do |user|
     jewel.user = user
     jewel.title = "#{Faker::Hipster.word.capitalize} #{type}"
     jewel.price = rand(0.0..75.0).round(2)
-    jewel.description = Faker::Restaurant.description
+    jewel.description = Faker::Hipster.sentences(number: 4).join(" ")
     image_urls[type.to_sym].sample(3).each do |url|
       photo = URI.open(url)
       filename = "#{jewel.title}.jpg"
@@ -115,3 +115,6 @@ users.each do |user|
   end
 end
 puts "Successfully seeded database!"
+
+# run following line in rails c to update sentences:
+# Jewel.all.each {|i| i.description = Faker::Hipster.sentences(number: 4).join(" ") ; i.save}
