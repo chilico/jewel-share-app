@@ -3,7 +3,7 @@ class JewelsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    # raise
+    @jewels = Jewel.all
     if params[:query].present?
       sql_query = <<~SQL
         jewels.title @@ :query
@@ -20,6 +20,11 @@ class JewelsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @user = @jewel.user
+    @markers = {
+      lat: @user.latitude,
+      lng: @user.longitude
+    }
   end
 
   def new
