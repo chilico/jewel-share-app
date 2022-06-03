@@ -1,10 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_jewel, only: %i[new create]
 
-  def new
-    @review = Review.new
-  end
-
   def create
     @review = Review.new(review_params)
     @review.jewel = @jewel

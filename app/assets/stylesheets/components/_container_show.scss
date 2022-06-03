@@ -1,5 +1,5 @@
 .container-show {
-  width: 800px;
+  width: 67%;
   margin: 0 auto;
   padding: 0;
 }
@@ -8,4 +8,12 @@
   background-size: cover;
   background-position: center;
   padding: 16px;
+}
+
+
+
+@media only screen and (max-width: 992px) {
+  .container-show {
+    width: 90%;
+  }
 }
