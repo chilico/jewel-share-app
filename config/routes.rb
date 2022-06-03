@@ -10,10 +10,15 @@ Rails.application.routes.draw do
   # root "jewel#index"
   resources :jewels, except: %i[index] do
     resources :bookings, only: %i[create]
+    resources :reviews, only: %i[create]
   end
 
   # resources :bookings, only: %i[index]
   resources :users, only: %i[show]
   get 'my_bookings', to: 'bookings#my_bookings'
+<<<<<<< HEAD
   # get 'profile/:id', to: 'users#profile'
+=======
+  resources :reviews, only: :destroy
+>>>>>>> 6fe64d9569640fcd21d65dab0b20084f57bd4103
 end
