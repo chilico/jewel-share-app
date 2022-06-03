@@ -1,5 +1,5 @@
-<div class="upper-circle" style="background-image: url('<%= asset_url('upper-circle-large.png') %>');">
-  <div class="container">
+<div class="upper-circle" style="background-image: url('<%= asset_url('upper-circle.png') %>');">
+  <div class="container container-show">
     <div class="row">
       <div class="col-12">
         <div>
@@ -8,49 +8,49 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12 col-sm-6">
-        <div class="d-flex align-items-center justify-content-center h-100">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner pb-5 pt-3">
-                <% @jewel.photos.each_with_index do |photo, index| %>
-                  <div class="carousel-item <%= "active" if index == 0 %>">
-                    <%= cl_image_tag photo.key, height: 300, width: 50, over_flow: :hidden, object_fit: :cover, alt: "Jewellery Photo", class: "d-block" %>
-                  </div>
-                <% end %>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+      <div class="col-12 col-md-6 p-4 d-flex justify-content-center">
+        <div class="d-flex align-items-center w-80">
+          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <% @jewel.photos.each_with_index do |photo, index| %>
+                <div class="carousel-item <%= "active" if index == 0 %>">
+                  <%= cl_image_tag photo.key, height: 300, width: 300, over_flow: :hidden, object_fit: :cover, alt: "Jewellery Photo", class: "d-block" %>
+                </div>
+              <% end %>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
       </div>
-      <div class="col-12 col-sm-6">
-        <div class="ms-3">
+      <div class="col-12 col-md-6 p-4">
+        <div class="mx-4">
           <%= simple_form_for [@jewel, @booking] do |f| %>
             <%= f.input :start_date, as: :date, html5: true%>
             <%= f.input :end_date, as: :date, html5: true %>
-            <div class="d-flex justify-content-center mt-4.5 py-2">
+            <div class="d-flex justify-content-center mt-4.5 py-3">
               <%= f.submit "Book Jewellery", class: "btn btn-dark-green" %>
             </div>
           <% end %>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12 col-sm-6">
+    <div class="row d-flex align-items-center my-2">
+      <div class="col-12 col-md-6">
         <div>
           <h1><%= @jewel.title %></h1>
           <p><%= @jewel.description %></p>
-          <p><%= "£#{@jewel.price}" %></p>
+          <p><strong><%= "£#{@jewel.price}" %></strong></p>
         </div>
       </div>
-      <div class="col-12 col-sm-6">
-        <div>
+      <div class="col-12 col-md-6 d-flex justify-content-end">
+        <div class="text-end">
           <div>
             <% if @jewel.user.profile_pic.attached? %>
                 <p><%= "#{@jewel.user.first_name} #{@jewel.user.last_name}  " %><%= cl_image_tag @jewel.user.profile_pic.key, gravity: "faces", crop: "fill", class: "avatar" %>
@@ -67,9 +67,9 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row my-2">
       <div class="col-12">
-        <div style="width: 100%; height: 600px;"
+        <div style="width: 100%; height: 300px;"
             data-controller="map"
             data-map-markers-value="<%= @markers.to_json %>"
             data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -78,15 +78,3 @@
     </div>
   </div>
 </div>
-
-
-  <%# <div class="d-flex flex-row justify-content-between">
-    <div class="pe-2">
-
-
-    </div>
-  </div>
-  <div class="d-flex flex-row justify-content-between py-5 align-items-center">
-
-
-  </div> %>
