@@ -28,14 +28,16 @@
   <% end %>
   <div class="row justify-content-center mb-4">
     <% @jewels.each do |jewel| %>
-      <div class="card-product col-8 col-md-4 col-lg-3 m-3 rounded nopadding" style="background-image: url('<%= asset_url('quater-circle.png') %>');">
-          <%= cl_image_tag jewel.photos.first.key %>
-        <div class="card-product-infos">
-          <h2><%= jewel.title %></h2>
-          <p>£<%= jewel.price %></p>
+      <%= link_to jewel, class: "card-link col-8 col-md-4 col-lg-3 nopadding m-3" do %>
+        <div class="card-product  rounded" style="background-image: url('<%= asset_url('quater-circle.png') %>');">
+            <%= cl_image_tag jewel.photos.first.key %>
+          <div class="card-product-infos">
+            <h2><%= jewel.title %></h2>
+            <p><%= jewel.description[0, 40] %> ...</p>
+            <h2>£<%= jewel.price %></h2>
+          </div>
         </div>
-        <%= link_to ">", jewel, class: "btn rounded-pill bottomright" %>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
