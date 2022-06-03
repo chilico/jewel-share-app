@@ -2,10 +2,11 @@
   color: $lighter_grey;
 
   &:hover{
-    color: $dark_grey;
+    color: #7E868D;
+    cursor:pointer;
   }
+}
 
-  &:active{
-    color: $dark_grey;
-  }
+.styling-for-links.active {
+  color: #7E868D;
 }
