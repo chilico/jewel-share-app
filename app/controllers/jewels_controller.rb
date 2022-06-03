@@ -20,6 +20,7 @@ class JewelsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @review = Review.new
     @user = @jewel.user
     @markers = {
       lat: @user.latitude,

@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
     @booking.jewel_id = @jewel.id
     @booking.user_id = current_user.id
     if @booking.save
-      redirect_to my_bookings_path, notice: 'Booking was successfully created.'
+      redirect_to user_path(current_user), notice: 'Booking was successfully created.'
     else
       render 'jewels/show', status: :unprocessable_entity
     end
