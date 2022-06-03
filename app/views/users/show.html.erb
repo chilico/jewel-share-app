@@ -39,7 +39,7 @@
                             <div class="card-product-infos p-3">
                               <h2><%= jewel.title %></h2>
                               <p><%= jewel.description[0, 40] %> ...</p>
-                              <h2>£<%= jewel.price %></h2>
+                              <h2>£<%=  number_with_precision(jewel.price, precision: 2) %></h2>
                             </div>
                           </div>
                         <% end %>
