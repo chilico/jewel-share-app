@@ -11,7 +11,7 @@
                 <%= image_tag "user.png", class: "avatar-bordered mx-auto" %>
               <% end %>
               <h2 class="pt-4 mx-auto"><%= @user.first_name %> <%= @user.last_name %></h2>
-              <%= link_to "Edit profile", edit_user_registration_path, class: "styling-for-links" %>
+              <%= link_to "Edit profile", edit_user_registration_path, class: "styling-for-links" if @user == current_user %>
             </div>
           </div>
         </div>
@@ -54,15 +54,10 @@
                           <%= cl_image_tag booking.jewel.photos.first.key %>
                           <div class="card-product-infos p-3">
                             <h2><%= booking.jewel.title %></h2>
-                            <p>£<%=number_with_precision(booking.jewel.price, precision: 2)  %>/day</p>
+                            <p style="font-size:12px"><strong>From</strong> <%= booking.start_date.strftime("%B %d") %><br><strong> To</strong> <%= booking.end_date.strftime("%B %d") %></p>
                           </div>
-                          <div class="">
-                            <p style="font-size:10px"><strong>From</strong><br> <%= booking.start_date.strftime("%B %d") %></p>
-                            <p style="font-size:10px; margin:0" class="pt-1"><strong>To</strong><br> <%= booking.end_date.strftime("%B %d") %></p>
-                          </div>
-                          <div class="">
-                            <%# <p><%= (booking.end_date - booking.start_date).to_i days</p> %>
-                            <p>Total: £<%= number_with_precision((booking.end_date - booking.start_date).to_i * booking.jewel.price, precision: 2) %></p>
+                          <div class="me-4 mt-4">
+                            <p>£<%=number_with_precision(booking.jewel.price, precision: 2)  %>/day<br>Total: £<%= number_with_precision((booking.end_date - booking.start_date).to_i * booking.jewel.price, precision: 2) %></p>
                           </div>
                         </div>
                       <% end  %>
@@ -72,8 +67,8 @@
               </div>
             <% else %>
               <ul class="justify-content-center">
-              <div class="justify-content-center">
-                <a href="" class="styling-for-links active">Listings</a>
+              <div class="d-flex justify-content-center">
+                <a href="" class="styling-for-links active justify-content-center mx-auto" style="text-decoration: none;">Listings</a>
               </div>
               <% @jewels.each do |jewel| %>
                     <div class="justify-content-center mb-4">
