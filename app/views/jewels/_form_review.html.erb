@@ -1,0 +1,12 @@
+<%= simple_form_for [jewel, review] do |f| %>
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :content %>
+    <div class="d-flex">
+      <%= f.input :rating, as: :radio_buttons, collection: Review::RATING, item_wrapper_class: "d-inline-block m-3" %>
+    </div>
+  </div>
+  <div class="form-actions d-flex justify-content-center mt-4.5 py-3">
+    <%= f.submit "Add your review", class: "btn btn-dark-green" %>
+  </div>
+<% end %>

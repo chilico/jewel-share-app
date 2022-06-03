@@ -4,10 +4,11 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.jewel = @jewel
+    @booking = Booking.new
     if @review.save
       redirect_to jewel_path(@jewel)
     else
-      render 'reviews/new', status: :unprocessable_entity
+      render 'jewels/show', status: :unprocessable_entity
     end
   end
 
@@ -20,10 +21,10 @@ class ReviewsController < ApplicationController
   private
 
   def set_jewel
-    @jewel = jewel.find(params[:jewel_id])
+    @jewel = Jewel.find(params[:jewel_id])
   end
 
   def review_params
-    params.require(:review).permit(:content, :rating)
+    params.require(:review).permit(:title, :content, :rating)
   end
 end
