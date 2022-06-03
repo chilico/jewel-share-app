@@ -16,9 +16,7 @@ Rails.application.routes.draw do
   # resources :bookings, only: %i[index]
   resources :users, only: %i[show]
   get 'my_bookings', to: 'bookings#my_bookings'
-<<<<<<< HEAD
   # get 'profile/:id', to: 'users#profile'
-=======
+
   resources :reviews, only: :destroy
->>>>>>> 6fe64d9569640fcd21d65dab0b20084f57bd4103
 end
