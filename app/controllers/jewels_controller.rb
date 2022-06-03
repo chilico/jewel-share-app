@@ -55,7 +55,7 @@ class JewelsController < ApplicationController
 
   def destroy
     @jewel.destroy
-    redirect_to jewels_url, notice: 'Jewel was successfully destroyed.'
+    redirect_to root_path, notice: 'Jewel was successfully destroyed.', status: :see_other
   end
 
   private

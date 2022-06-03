@@ -19,6 +19,7 @@
     </div>
   </div>
 </div>
+
 <div class="container text-center">
   <% if params[:query].present? %>
     <h2 class="my-4">Listings matching <%= "'#{params[:query]}'" %></h2>
@@ -32,8 +33,8 @@
             <%= cl_image_tag jewel.photos.first.key %>
           <div class="card-product-infos">
             <h2><%= jewel.title %></h2>
-            <p><%= jewel.description[0, 40] %> ...</p>
-            <h2 class="text-end px-4">£<%= jewel.price %></h2>
+            <p><%= jewel.description[0, 20] %> ...</p>
+            <h2 class="text-end px-4">£<%= number_with_precision(jewel.price, precision: 2)  %></h2>
           </div>
         </div>
       <% end %>

@@ -1,0 +1,101 @@
+<div class="upper-circle" style="background-image: url('<%= asset_url('upper-circle-large.png') %>');">
+  <div class="container-show">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="row justify-content-center w-100">
+          <div class="col-12 col-md-6">
+            <div class="pt-4 d-flex flex-column justify-content-center align-items-center">
+              <% if @user.profile_pic.attached? %>
+                <%= cl_image_tag @user.profile_pic.key, gravity: "faces", crop: "fill", class: "avatar-bordered mx-auto" %>
+              <% else %>
+                <%= image_tag "user.png", class: "avatar-bordered mx-auto" %>
+              <% end %>
+              <h2 class="pt-4 mx-auto"><%= @user.first_name %> <%= @user.last_name %></h2>
+              <%= link_to "Edit profile", edit_user_registration_path, class: "styling-for-links" if @user == current_user %>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-4 d-flex align-items-center">
+          <div class="col-12 col-md-6">
+            <% if @user == current_user %>
+              <ul class="nav justify-content-center" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link active styling-for-links" data-bs-toggle="tab" data-bs-target="#listings" type="a" role="tab" aria-controls="listings" aria-selected="true">Listings</a>
+                </li>
+                <li>
+                 <a class="nav-link disabled styling-for-links" href="#" tabindex="-1" aria-disabled="true">|</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link styling-for-links" data-bs-toggle="tab" data-bs-target="#bookings" type="a" role="tab" aria-controls="bookings" aria-selected="false">Bookings</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="listings" role="tabpanel" aria-labelledby="listings-tab">
+                    <% @jewels.each do |jewel| %>
+                      <div class="justify-content-center mb-4">
+                        <%= link_to jewel, class: "card-link col-8 col-md-4 col-lg-3 nopadding m-3" do %>
+                          <div class="card-product  rounded" style="background-image: url('<%= asset_url('quater-circle.png') %>');">
+                            <%= cl_image_tag jewel.photos.first.key %>
+                            <div class="card-product-infos p-3">
+                              <h2><%= jewel.title %></h2>
+                              <p><%= jewel.description[0, 40] %> ...</p>
+                              <h2>£<%= jewel.price %></h2>
+                            </div>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% end %>
+                </div>
+                <div class="tab-pane fade" id="bookings" role="tabpanel" aria-labelledby="bookings-tab">
+                  <% @bookings.each do |booking| %>
+                    <div class="justify-content-center mb-4">
+                      <%= link_to booking.jewel, class: "card-link col-8 col-md-4 col-lg-3 nopadding m-3" do %>
+                        <div class="card-product rounded nopadding" style="background-image: url('<%= asset_url('quater-circle.png') %>');">
+                          <%= cl_image_tag booking.jewel.photos.first.key %>
+                          <div class="card-product-infos p-3">
+                            <h2><%= booking.jewel.title %></h2>
+                            <p style="font-size:12px"><strong>From</strong> <%= booking.start_date.strftime("%B %d") %><br><strong> To</strong> <%= booking.end_date.strftime("%B %d") %></p>
+                          </div>
+                          <div class="me-4 mt-4">
+                            <p>£<%=number_with_precision(booking.jewel.price, precision: 2)  %>/day<br>Total: £<%= number_with_precision((booking.end_date - booking.start_date).to_i * booking.jewel.price, precision: 2) %></p>
+                          </div>
+                        </div>
+                      <% end  %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% else %>
+              <ul class="justify-content-center">
+              <div class="d-flex justify-content-center">
+                <a href="" class="styling-for-links active justify-content-center mx-auto" style="text-decoration: none;">Listings</a>
+              </div>
+              <% @jewels.each do |jewel| %>
+                    <div class="justify-content-center mb-4">
+                      <%= link_to jewel, class: "card-link col-8 col-md-4 col-lg-3 nopadding m-3" do %>
+                        <div class="card-product  rounded" style="background-image: url('<%= asset_url('quater-circle.png') %>');">
+                          <%= cl_image_tag jewel.photos.first.key %>
+                          <div class="card-product-infos p-3">
+                            <h2><%= jewel.title %></h2>
+                            <p><%= jewel.description[0, 40] %> ...</p>
+                            <h2>£<%= jewel.price %></h2>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
+              </ul>
+            <% end %>
+          </div>
+          <div class="col-12 col-md-6">
+            <div style="width: 100%; height: 600px; position: sticky; top: 0; border-radius: 20px;"
+              data-controller="map"
+              data-map-markers-value="<%= @markers.to_json %>"
+              data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
