@@ -50,15 +50,13 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  // align-items: center;
+  padding: 10px;
 }
 
 .bottomright {
   border: none;
-  color: white;
-  background-color: #E8DB7C;
   position: absolute;
-  right: 0px;
+  right: 15px;
   bottom: 0px;
   width: 30px;
   height: 30px;
