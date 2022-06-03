@@ -59,11 +59,15 @@
             <% end %></p>
           </div>
           <p><%= link_to "Edit Jewellery Listing", edit_jewel_path(@jewel.id), class: "styling-for-links" %></p>
-          <p>
-            <%= link_to "Delete Jewellery Listing",
-              jewel_path(@jewel.id),
-              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "styling-for-links" %>
-          </p>
+          <% if user_signed_in? %>
+            <% if @jewel.user == current_user %>
+              <p>
+                <%= link_to "Delete Jewellery Listing",
+                  jewel_path(@jewel.id),
+                  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "styling-for-links" %>
+              </p>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
